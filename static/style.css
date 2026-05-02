@@ -1,0 +1,286 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap");
+
+:root {
+    color-scheme: dark;
+    --bg-base: #050608;
+    --bg-depth: #0b111c;
+    --text: #eef2f7;
+    --muted: #9aa4b2;
+    --accent: #6be4ff;
+    --accent-strong: #2b9bff;
+    --glass: rgba(12, 15, 22, 0.72);
+    --glass-soft: rgba(12, 15, 22, 0.55);
+    --border: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.22);
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    --radius-lg: 8px;
+    --radius-md: 7px;
+    --radius-sm: 6px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Sora", "Segoe UI", sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at top, rgba(60, 80, 130, 0.25), transparent 45%),
+        radial-gradient(circle at 20% 20%, rgba(30, 120, 160, 0.25), transparent 40%),
+        var(--bg-base);
+    min-height: 100vh;
+    padding: 32px;
+}
+
+.glow {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    opacity: 0.6;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.glow-a {
+    top: -160px;
+    left: -120px;
+    background: radial-gradient(circle, rgba(107, 228, 255, 0.2), transparent 70%);
+}
+
+.glow-b {
+    bottom: -180px;
+    right: -140px;
+    background: radial-gradient(circle, rgba(70, 130, 255, 0.2), transparent 70%);
+}
+
+.app {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.header {
+    padding: 18px 4px;
+    animation: rise 0.6s ease both;
+}
+
+.header h1 {
+    margin: 0 0 6px;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+}
+
+.header p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 560px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 20px;
+}
+
+.panel {
+    padding: 22px;
+    background: var(--glass);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px) saturate(160%);
+    position: relative;
+    animation: rise 0.6s ease both;
+}
+
+.layout .panel:nth-child(1) {
+    animation-delay: 0.08s;
+}
+
+.layout .panel:nth-child(2) {
+    animation-delay: 0.16s;
+}
+
+.panel::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(var(--radius-lg) - 1px);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+.panel>* {
+    position: relative;
+    z-index: 1;
+}
+
+.panel-header h2 {
+    margin: 0 0 14px;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+textarea {
+    width: 100%;
+    min-height: 360px;
+    resize: vertical;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border);
+    padding: 16px;
+    font-size: 16px;
+    font-family: "Sora", "Segoe UI", sans-serif;
+    background: rgba(7, 9, 14, 0.65);
+    color: var(--text);
+    outline: none;
+}
+
+textarea:focus {
+    border-color: rgba(107, 228, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(107, 228, 255, 0.18);
+}
+
+.actions {
+    margin-top: 14px;
+}
+
+.file-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--border);
+    background: var(--glass-soft);
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.file-button input {
+    display: none;
+}
+
+button,
+select,
+input[type="range"] {
+    font-family: "Sora", "Segoe UI", sans-serif;
+}
+
+button {
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--border);
+    background: rgba(10, 14, 22, 0.65);
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+    transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    border-color: var(--border-strong);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+button.primary {
+    background: linear-gradient(135deg, rgba(107, 228, 255, 0.24), rgba(43, 155, 255, 0.12));
+    border-color: rgba(107, 228, 255, 0.6);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin: 16px 0 18px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+select {
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--border);
+    padding: 10px 12px;
+    background: rgba(9, 12, 18, 0.75);
+    color: var(--text);
+}
+
+.range-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+}
+
+.status {
+    padding-top: 6px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .header,
+    .panel {
+        animation: none;
+    }
+}
+
+@media (max-width: 980px) {
+    body {
+        padding: 20px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
